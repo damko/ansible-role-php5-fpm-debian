@@ -31,15 +31,15 @@ All options:
 
 1. Install php5-fpm configured to use unix socket connection. No phpmyadmin will be installed
 
-    - role: damko.php5-fpm-debian
+        - role: damko.php5-fpm-debian
 
 2. Install php5-fpm using tcp_ip connection on 127.0.0.1:9001:
 
-    - {
-         role: damko.php5-fpm-debian,
-             use_tcp_ip_connection: true,
-             php5_tcp_ip_port: 9001
-     }
+        - {
+             role: damko.php5-fpm-debian,
+                 use_tcp_ip_connection: true,
+                 php5_tcp_ip_port: 9001
+         }
 
 
 License
