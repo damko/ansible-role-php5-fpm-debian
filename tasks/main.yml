@@ -46,7 +46,7 @@
   lineinfile: dest=/etc/php5/fpm/pool.d/www.conf regexp='^group =' line='group = {{nginx_group}}' state=present
 
 - name: Enable TCP/IP instead of unix socket
-  lineinfile: dest=/etc/php5/fpm/pool.d/www.conf regexp='^listen =' line='listen = 127.0.0.1:9000' state=present
+  lineinfile: dest=/etc/php5/fpm/pool.d/www.conf regexp='^listen =' line='listen = {{php5_host_ip}}:{{php5_tcp_ip_port}}' state=present
   when: use_tcp_ip_connection == true
 
 - service: name=php5-fpm state=restarted enabled=yes

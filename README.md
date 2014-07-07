@@ -1,31 +1,46 @@
-Role Name
-========
+Ansible php5-fpm Debian
+=====
 
-A brief description of the role goes here.
+This Ansible role installs and configures the php5-fpm for Nginx on a Debian system (wheezy).
+Optionally it can install phpmyadmin (just the package without any particular configuration).
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role requires Ansible 1.4 or higher and the ansible role damko.nginx-debian just because in that role I set the variable {{nginx_user}} which is used also by this role.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+You can see the variables that can be passed to this role by checking the file `defaults/main.yml`.
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Examples
+========
 
-Example Playbook
--------------------------
+All options:
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+    - {
+         role: damko.php5-fpm-debian,
+             install_phpmyadmin: false,
+             use_tcp_ip_connection: false,
+             php5_host_ip: 127.0.0.1
+             php5_tcp_ip_port: 9000
+     }
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+
+1. Install php5-fpm configured to use unix socket connection. No phpmyadmin will be installed
+
+    - role: damko.php5-fpm-debian
+
+2. Install php5-fpm using tcp_ip connection on 127.0.0.1:9001:
+
+    - {
+         role: damko.php5-fpm-debian,
+             use_tcp_ip_connection: true,
+             php5_tcp_ip_port: 9001
+     }
+
 
 License
 -------
@@ -35,4 +50,5 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Damiano Venturin
+
