@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: "Damiano Venturin"
+  description: "Install and configure PHP5-FPM on Debian system"
+  company: 2V
+  license: BSD
+  min_ansible_version: 1.4
+  platforms:
+   - name: Debian
+     versions:
+      - wheezy
+  categories:
+   - web
+dependencies: [damko.nginx-debian]

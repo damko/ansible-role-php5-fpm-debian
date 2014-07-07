@@ -1,0 +1,5 @@
+---
+# defaults file for php5-fpm-debian
+
+install_phpmyadmin: false
+use_tcp_ip_connection: false
