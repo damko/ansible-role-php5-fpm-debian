@@ -1,6 +1,6 @@
 ---
 # vars file for php5-fpm-debian
-
+php5_fpm_dists: wheezy-php55
 php_packages: [
     'php5-fpm',
     'php5-curl',

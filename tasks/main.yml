@@ -3,7 +3,7 @@
 
 # Add php5 repository if never done before
 - name: Add php5 repository
-  apt_repository: repo='deb http://packages.dotdeb.org {{ansible_distribution_release}}-php55 all' state=present
+  apt_repository: repo='deb http://packages.dotdeb.org {{php5_fpm_dists}} all' state=present
 
 # Add php5 repository key to apt keyring if never done before
 - name: Add php5 repository key
