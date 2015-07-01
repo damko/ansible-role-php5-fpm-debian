@@ -1,21 +1,19 @@
 ---
 # tasks file for php5-fpm-debian
 
+# Add php5 repository if never done before
+- name: Add php5 repository
+  apt_repository: repo='deb http://packages.dotdeb.org {{ansible_distribution_release}}-php55 all' state=present
+
+# Add php5 repository key to apt keyring if never done before
+- name: Add php5 repository key
+  apt_key: url=http://www.dotdeb.org/dotdeb.gpg state=present
+
 - name: Check if php5-fpm is already installed
   command: dpkg -s php5-fpm
   ignore_errors: yes
   register: result
   failed_when: result.stderr.find('is not installed') != -1
-
-# Add php5 repository if never done before
-- name: Add php5 repository
-  apt_repository: repo='deb http://packages.dotdeb.org {{ansible_distribution_release}}-php55 all' state=present
-  when: result|failed
-
-# Add php5 repository key to apt keyring if never done before
-- name: Add php5 repository key
-  apt_key: url=http://www.dotdeb.org/dotdeb.gpg state=present
-  when: result|failed
 
 # Refresh apt packages if the php5 repo has just been added
 - name: Update apt
@@ -48,5 +46,11 @@
 - name: Enable TCP/IP instead of unix socket
   lineinfile: dest=/etc/php5/fpm/pool.d/www.conf regexp='^listen =' line='listen = {{php5_host_ip}}:{{php5_tcp_ip_port}}' state=present
   when: use_tcp_ip_connection == true
+
+- name: Set Timezone
+  lineinfile: dest=/etc/php5/fpm/php.ini regexp=';date.timezone =' line='date.timezone = {{php5_time_zone}}' state=present
+
+- name: Set Timezone for CLI
+  lineinfile: dest=/etc/php5/cli/php.ini regexp=';date.timezone =' line='date.timezone = {{php5_time_zone}}' state=present
 
 - service: name=php5-fpm state=restarted enabled=yes

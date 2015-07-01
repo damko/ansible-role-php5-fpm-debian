@@ -14,6 +14,7 @@ Role Variables
 
 You can see the variables that can be passed to this role by checking the file `defaults/main.yml`.
 
+Check `vars/main.yml` to see the packages that will be installed.
 
 Examples
 ========

@@ -5,3 +5,4 @@ install_phpmyadmin: false
 use_tcp_ip_connection: false
 php5_host_ip: 127.0.0.1
 php5_tcp_ip_port: 9000
+php5_time_zone: Europe/Rome

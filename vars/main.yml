@@ -9,4 +9,7 @@ php_packages: [
     'php5-imagick',
     'php5-gd',
     'php5-mysql',
+    'php-gettext',
+    'php5-intl',
+    'php-pear'
 ]
